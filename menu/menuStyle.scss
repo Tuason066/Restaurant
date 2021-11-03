@@ -1,0 +1,168 @@
+@import url("../style.css");
+
+$montserrat: 'Montserrat', sans-serif;
+$orange: #c59d5f;
+
+// menu
+.sectionMenu {
+    margin-top: 5rem;
+}
+
+@media (min-width: 375px) {
+    .sectionMenu {
+        margin-top: 3rem;
+    }
+}
+@media (min-width: 900px) {
+    .sectionMenu {
+        margin-top: 5rem;
+    }
+}
+
+.sectionMenu__header {
+    padding: 3em 0 2em;
+}
+
+// sectionMenu title
+.sectionMenu__title {
+    color: #222;
+    font-family: $montserrat;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.underline {
+    height: 0.2rem;
+    width: 4rem;
+    background-color: $orange;
+    border-radius: 1rem;
+    margin-left: calc(50% - 2rem);
+}
+
+// menu buttons
+.btn-container {
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.filter-btn {
+    border: 2px solid $orange;
+    border-radius:10px;
+    color: $orange;
+    padding: .5em 1em;
+    font-size: .8rem;
+    font-weight: 700;
+    transition: all .4s ease;
+    letter-spacing: 1px;
+    margin: 0 .2rem .5rem;
+    &:hover {
+        transform: translateY(-3px);
+        color: hsl(212, 33%, 89%);
+        background-color: $orange;
+    }
+}
+
+// menu items
+.menu {
+    width: 80%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem 0;
+    &__photo {
+        width: 100%;
+        max-height: 230px;
+        object-fit: cover;
+
+        background-color: $orange;
+
+        border: .2rem solid $orange;
+        border-radius: 10px;
+    }
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .7rem 0 .5rem;
+        border-bottom: 1px solid rgb(177, 175, 175);
+    }
+    &__title {
+        font-family: $montserrat;
+        font-size: .75rem;
+        font-weight: 600;
+        letter-spacing: .2rem;
+        text-transform: capitalize;
+    }
+    &__price {
+        font-family: $montserrat;
+        font-size: .75rem;
+        font-weight: 600;
+        letter-spacing: .2rem;
+        color: $orange;
+    }
+    &__text {
+        text-align: left;
+        font-size: .7rem;
+        font-family: $montserrat;
+        line-height: 1.5;
+        padding: .8rem 0;
+    }
+}
+
+@media (min-width: 700px) {
+    
+    .menu {
+        max-width: 700px;
+        display: flex;
+        // border: 1px solid red;
+        &__photo {
+            // width: 35%;
+            max-width: 235px;
+            max-height: 150px;
+            margin-right: 1.5rem;
+        }
+        &__info {
+            width: 65%;
+        }
+        &__title {
+            font-size: .9rem;
+            letter-spacing: .1rem;
+        }
+        &__price {
+            font-size: .9rem;
+            letter-spacing: .1rem;
+        }
+        &__header {
+            padding: 0 0 .3rem;
+        }
+    }
+}
+
+@media (min-width: 1000px) {
+
+    // menu
+
+    // menu title
+    .sectionMenu__title {
+        font-size: 3rem;
+    }
+    .menu-container {
+        padding: 0 4rem;
+        max-width: 1440px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2rem 1.5rem;
+        // max-width: 1440px;
+        // border: 1px solid red;
+    }
+
+    .menu {
+        width: 100%;
+        padding: 0;
+        &__photo {
+            // width: 100%;
+            max-width: 239px;
+            max-height: 161px;
+        }
+    }
+}
