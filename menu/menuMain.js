@@ -91,9 +91,11 @@ const menuBtnContainer = document.querySelector('.btn-container')
 
 window.addEventListener('DOMContentLoaded', function() {
   getDisplayMenu(menu);
-  getMenuCategoryBtns();
-
-})
+  getMenuCategoryBtns(menu);
+  getDisplayModal();
+  
+  
+});
 
 function getDisplayMenu(menuItem) {
   const displayMenu = menuItem.map(function(item) {
@@ -106,23 +108,25 @@ function getDisplayMenu(menuItem) {
         </header>
         <div class="menu__desc">
             <div class="menu__text">${item.desc}</div>
+            <button class="purchase-btn" data-id="${item.id}">order food</button>
         </div>
     </div>
 </article>`
   }).join('');
 
   menuContainer.innerHTML = displayMenu;
-}
+};
 
-function getMenuCategoryBtns() {
+function getMenuCategoryBtns(menu) {
   
   // declaring menu category buttons
   const category = menu.reduce(function(a,b) {
     if(!a.includes(b.category)) {
       a.push(b.category);
-    }
+    };
     return a;
-  }, ['all'])  
+  }, ['all']);
+
   const categoryBtn = category.map(function(item) {
     return `<button class="filter-btn" type="button" data-id="${item}">${item}</button>`
   }).join('');
@@ -139,15 +143,106 @@ function getMenuCategoryBtns() {
       const filterCategory = menu.filter(function(item) {
         if(btnClicked === item.category) {
           return item;
-        }
-      })
+        };
+      });
 
       if(btnClicked === 'all') {
         getDisplayMenu(menu);
+        getDisplayModal()
       } else {
         getDisplayMenu(filterCategory);
-      }
-    })
-  })
+        getDisplayModal();
+      };
+    });
 
-}
+  });
+
+};
+
+
+// Display Modal
+
+function getDisplayModal() {
+  
+  const purchaseBtns = document.querySelectorAll('.purchase-btn');
+
+  purchaseBtns.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      const purchaseNumber = e.currentTarget.dataset.id;
+      const purchaseBtn = parseInt(purchaseNumber, 10);
+
+      // filter purchase ID
+      const purchaseItems = menu.filter(function(purchaseItem) {
+
+        if(purchaseBtn === purchaseItem.id) {
+          return purchaseItem;
+        };
+
+      });
+      
+      // modal
+      
+      const displayModal = purchaseItems.map(function(modalItem) {
+        return `<div class="modal__center">
+        <button class="modal__close">
+            <i class="fas fa-times"></i>
+        </button>
+        <img src=${modalItem.img} class="modal__photo" alt=${modalItem.title}>
+        <div class="modal__desc">
+            <p class="modal__title">${modalItem.title}</p>
+            <p class="modal__price">$${modalItem.price}</p>
+        </div>
+        <div class="modal__quantity">
+          <button type="button" class="modal__quantity--btn" data-id="dec">-</button>
+          <span class="modal__quantity--value" data-id="value">1</span>
+          <button type="button" class="modal__quantity--btn" data-id="inc">+</button>
+        </div>
+        <button class="modal__btn">Confirm Order</button>
+    </div>`
+      }).join('');
+
+      const modal = document.querySelector('.modal');
+      modal.innerHTML = displayModal;
+      // show modal btn
+      modal.classList.add('show-modal');
+      // close modal btn
+      const closeModal = document.querySelector('.modal__close');
+      closeModal.addEventListener('click', () => {
+        modal.classList.remove('show-modal');
+      });
+      // confirm button
+      const btnModal = document.querySelector('.modal__btn');
+      btnModal.addEventListener('click', () => {
+        modal.classList.remove('show-modal');
+      })
+      // quantity modal btn
+      let value = document.querySelector('.modal__quantity--value');
+      let initialValue = 1;
+      const quantityBtns = document.querySelectorAll('.modal__quantity--btn');
+
+      quantityBtns.forEach(function (btn) {
+        btn.addEventListener('click', (e) => {
+          const quantityBtn = e.currentTarget.dataset.id;
+          if(quantityBtn === 'inc') {
+            initialValue++;
+            value.textContent = initialValue;
+          } else {
+            initialValue--;
+            if(initialValue === 0) {
+              initialValue = 1;
+            }
+            value.textContent = initialValue;
+          }
+
+
+        })
+      });
+
+
+
+    });
+  });
+
+  // end function
+};
+

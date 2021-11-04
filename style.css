@@ -201,6 +201,8 @@ h1 {
   padding: 1.5rem 0;
   background-color: #829ab0;
   margin-top: 3rem;
+  max-width: 1440px;
+  margin: 3rem auto 0;
 }
 
 .footer__text {

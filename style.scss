@@ -202,6 +202,8 @@ h1 {
     padding: 1.5rem 0;
     background-color: hsl(209, 23%, 60%);
     margin-top: 3rem;
+    max-width: 1440px;
+    margin: 3rem auto 0;
     &__text {
         color: hsl(205, 86%, 17%);
         font-family: $montserrat;
