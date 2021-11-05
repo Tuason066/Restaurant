@@ -246,7 +246,7 @@
   position: absolute;
   right: 1rem;
   top: .8rem;
-  font-size: .8rem;
+  font-size: 1rem;
 }
 
 .modal__photo {
@@ -314,9 +314,8 @@
 
 .modal__quantity--value {
   display: inline-block;
-  font-size: .7rem;
+  font-size: .75rem;
   padding: 0 .5em;
-  border: 1px solid green;
   color: #dae2ec;
 }
 

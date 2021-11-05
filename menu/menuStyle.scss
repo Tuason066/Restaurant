@@ -226,7 +226,7 @@ $orange: #c59d5f;
         position: absolute;
         right: 1rem;
         top: .8rem;
-        font-size: .8rem;
+        font-size: 1rem;
     }
     &__photo {
         width: 100%;
@@ -273,9 +273,8 @@ $orange: #c59d5f;
         }
         &--value {
             display: inline-block;
-            font-size: .7rem;
+            font-size: .75rem;
             padding: 0 .5em;
-            border: 1px solid green;
             color:hsl(212, 33%, 89%);
         }
     }
